@@ -1,0 +1,48 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
+<html>
+	<head>
+		<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+		<title>Untitled Document</title>
+		<script type=text/javascript charset=utf-8>
+			
+			//对象原型prototype
+			/*
+			function Person(name,age,sex){
+				this.name = name;
+				this.age = age;
+				this.sex = sex;
+				this.sayName = function(){
+					alert(this.name);
+				}
+			}
+			var p1 = new Person('xiao A',20,'男');
+			var p2 = new Person('xiao B',29,'女');
+			alert(p1.name == p2.name);		//false  每次创建对象都要实例化其属性 原型就是解决这个弊端的方法
+			*/
+			
+			//对象原型demo
+			function Person(){
+				
+			}
+			Person.prototype.name = '小八';
+			Person.prototype.age = 20;
+			Person.prototype.sex = '男';
+			Person.prototype.sayName = function(){
+				alert(this.name);
+			}
+			var p1 = new Person();
+			var p2 = new Person();
+			alert(p1.name == p2.name);		//true
+			p1.sayName();
+			alert(p1.constructor);	//p1的构造函数为Person
+			alert(Person.prototype.isPrototypeOf(p1));
+			
+			
+			
+			
+			
+		</script>
+	</head>
+	<body>
+	</body>
+</html>

@@ -1,0 +1,52 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
+<html>
+	<head>
+		<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+		<title>Untitled Document</title>
+		<script type=text/javascript charset=utf-8>
+			
+			//类的模拟 1、工厂模式  2、构造函数的模式
+			//工厂模式
+			/*
+			function createperson(name,sex,age){
+				var obj = new Object();		//对新建对象的更改 再返回的一种方法
+				obj.name = name;
+				obj.sex = sex;
+				obj.age = age;
+				obj.sayName = function(){
+					alert(obj.name);
+				}
+				return obj;
+			}			
+			
+			var p1 = new createperson('z3','男',29);
+			alert(p1.name);
+			p1.sayName();
+			*/
+			
+			//构造函数模式
+			function Person(name,sex,age){		//函数名大写表示类
+				this.name = name;
+				this.sex = sex;
+				this.age = age;
+				this.sayName = function(){
+					alert(this.name);
+				}
+			}
+			//创建对象的方式
+			//var p1 = new Person('z3','男',38); //创建对象的第一种方式
+			//alert(p1.name);
+			//p1.sayName();
+			
+			//Person('z3','男',38);	//创建对象的第二种方式
+			
+			var o = new Object();
+			Person.call(o,'z3','男',38);		//创建对象的第三种方式
+			alert(o.name);
+			o.sayName();
+			
+		</script>
+	</head>
+	<body>
+	</body>
+</html>
