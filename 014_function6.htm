@@ -1,0 +1,29 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
+<html>
+	<head>
+		<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+		<title>Untitled Document</title>
+		<script type=text/javascript charset=utf-8>
+			
+			
+			//执行环境和作用域链
+			//每一个function表示一个作用域
+			var a = 10;			//一级作用域
+			function test(){	//二级作用域
+				var a = 20;
+				return function(){		//三级作用域
+					return this.a;
+				}
+			}
+			
+			//js总是从内到外追溯的
+			//alert(test()());	//加()表示执行	
+			//等价于 
+			var b = test();
+			alert(b());
+			
+		</script>
+	</head>
+	<body>
+	</body>
+</html>
