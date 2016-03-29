@@ -1,0 +1,47 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
+<html>
+	<head>
+		<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+		<title>Untitled Document</title>
+		<script type=text/javascript charset=utf-8>
+			
+			//原型的常用方法 
+		
+			function Person(){
+				
+			}
+			Person.prototype.name = 'z3';
+			Person.prototype.age = 29;
+			Person.prototype.say = function(){
+				alert('hello!');
+			}
+			var p1 = new Person();
+			var p2 = new Person();
+			
+			//isPrototypeOf()判断p1的原型是否是Person.prototype
+			//alert(Person.prototype.isPrototypeOf(p1));
+			
+			//获得一个对象的原型
+			var attr = Object.getPrototypeOf(p1);
+			//alert(attr == Person.prototype);
+			
+			//in操作符  判断属性是否在实例对象和原型对象中
+			//alert('name' in p1);		//true
+			
+			//hasOwnProperty() 判断属性是否是实例对象的属性
+			//alert(p1.hasOwnProperty(name));		//false name是原型的属性
+			
+			//Object.keys() 拿到当前对象里的所有keys 返回一个数组
+			//alert(Object.keys(p1));
+			
+			//判断属性是否在原型对象中
+			function inprototype(attributes,object){
+				return !object.hasOwnProperty(attributes) && attributes in object;
+			}
+			alert(inprototype('name',p1));
+			
+		</script>
+	</head>
+	<body>
+	</body>
+</html>
