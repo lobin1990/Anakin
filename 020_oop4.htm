@@ -1,0 +1,64 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
+<html>
+	<head>
+		<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+		<title>Untitled Document</title>
+		<script type=text/javascript charset=utf-8>
+			
+			var arr = [1,2,3,[4,[5,6,[7,8,[9]]]]];
+			//取得原型
+			Array.prototype.each = function(fn){
+				alert('进入原型！');
+				try{
+					//要遍历数组的每一项 需要一个计数器记录当前项
+					//var i = 0 ;
+					//var i = 0 耦合度高 安全的做法是
+					this.i || (this.i = 0);
+					//alert('i初始化完毕！');
+					//只有传入的参数是函数 数组长度大于零 才执行遍历代码
+					if(this.length > 0 && fn.constructor == Function){
+						//alert('进入if判断！');
+						while (this.i < this.length) {
+							var e = this[this.i];
+							//如果遍历的当前项是数组 则执行递归 否则执行fn传递参数
+							if (e && e.constructor == Array) {
+								e.each(fn);
+								//alert("递归执行了！");
+							}
+							else {
+								//fn(e);
+								//用绑定的方式
+								fn.call(e,e);
+								//alert('fn执行了！');
+							}
+							this.i ++;
+						}
+						
+					}else{
+						alert('出错！')
+					}
+					this.i = null;
+				}
+				catch(ex){
+					alert(ex);
+				}
+				return this;
+				
+			}
+			
+			arr.each(function(item){
+				alert(item);
+				})
+			//alert(arr);
+			
+			
+			
+			
+			
+			
+			
+		</script>
+	</head>
+	<body>
+	</body>
+</html>
