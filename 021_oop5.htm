@@ -1,0 +1,67 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
+<html>
+	<head>
+		<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+		<title>Untitled Document</title>
+		<script type=text/javascript charset=utf-8>
+			
+			//简单原型
+			/*
+			function Person(){
+				
+			}
+			//原型对象指向一个匿名对象称之为简单原型
+			Person.prototype = {
+				name : 'z3',
+				age : 29 ,
+				say : function(){
+					alert("我是原型的方法！");
+				}
+			}
+			
+			//var p1 = new Person();
+			//alert(p1.name);
+			//p1.say();
+			//alert(Person.prototype.constructor);   //object 改变了原型对象的构造器
+			
+			//Object.definePrototype()重新设置原型对象的构造器
+			//有三个参数  参数一：要设置的对象原型 参数二：设置的属性  参数三：option设置选项
+			Object.defineProperty(Person.prototype,"constructor",{
+				enumerable : false,
+				value : Person
+			});
+			
+			var p1 = new Person();
+			alert(Person.prototype.constructor);		//Person
+			for(attr in p1){
+				alert(attr);
+			}
+			*/
+			
+			//原型的动态特性
+			function Person(){
+				
+			}
+			var p1 = new Person();
+			//Person.prototype.say = function(){
+			//	alert('z3');
+			//};
+			//p1.say();		//z3
+			//简单原型中 必须要在创建简单原型之后 创建对象
+			Person.prototype = {
+				say: function(){
+					alert('z3');
+				}
+			}	
+			try{
+			p1.say();
+			}
+			catch(ex){
+				alert(ex);		//p1.say is nor a function
+			}
+			
+		</script>
+	</head>
+	<body>
+	</body>
+</html>
