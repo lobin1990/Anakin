@@ -1,0 +1,78 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
+<html>
+	<head>
+		<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+		<title>Untitled Document</title>
+		<script type=text/javascript charset=utf-8>
+			
+			//原型对象的弊端:共享属性和方法（使得修改单个实例对象的属性变得麻烦和困难）
+			/*
+			function Person(){
+				
+			}
+			Person.prototype = {
+				name:'z3',
+				age:29,
+				friends:['王五','赵六'],
+			}
+			p1 = new Person();
+			p2 = new Person();
+			p1.friends.push('李四');
+			alert(p1.friends);
+			alert(p2.friends);
+			*/
+			
+			//实际开发中 通常使用构造函数和原型对象组合的方式
+			/*
+			function Person(name,age,friends){
+				this.name = name;
+				this.age = age;
+				this.friends = friends;
+			}
+			Person.prototype = {
+				say:function(){
+					alert('哈喽！')
+				}
+			}
+			p1 = new Person('张三',20,['王五','赵六'])
+			p2 = new Person('陈七',23,['张三','赵四'])
+			p1.friends.push('钱二');
+			alert(p1.friends);
+			alert(p2.friends);
+			*/
+			
+			//动态原型方法：让属性和方法都封装到一起
+			/*
+			function Person(name,age,job){
+				this.name = name;
+				this.age = age;
+				this.job = job;
+				//动态原型的方法：
+				if(typeof this.say != 'function'){
+					Person.prototype.say = function(){
+						alert('哈喽！');
+					}
+				}
+			}
+			*/
+			
+			//稳妥构造函数式:非常安全的环境 
+			//1、没有公共的属性 2、不能使用this对象
+			function Person(name,age,job){
+				var obj = new Object();
+				var name = name; 	//等同于java的私有属性 外部不能访问
+				var age = age;
+				var job = job;
+				obj.say = function(){
+					alert(name);
+				}
+				return obj;
+			}
+			p1 = new Person('张三');
+			p1.say();
+			
+		</script>
+	</head>
+	<body>
+	</body>
+</html>
