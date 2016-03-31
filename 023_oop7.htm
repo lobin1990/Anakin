@@ -1,0 +1,41 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
+<html>
+	<head>
+		<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+		<title>Untitled Document</title>
+		<script type=text/javascript charset=utf-8>
+			
+			//原型链实现继承:原型链会一层一层的搜索（影响性能）
+			//父类
+			function Sup(name){
+				this.name = name;
+			}
+			Sup.prototype = {
+				constructor : Sup,
+				sayName:function(){
+					alert(this.name)
+				}
+			}
+			
+			//子类
+			function Sub(age){
+				this.age = age;
+			}
+			
+			Sub.prototype = new Sup('z3');		//子类原型指向父类实例
+			sub1 = new Sub(25);
+			sub2 = new Sub(20);
+			//继承后父类的属性和方法被所有子类实例共享（原型的弊端）
+			alert(sub1.name);		//z3
+			alert(sub2.name);		//z3
+			alert(sub1.age);
+			sub1.sayName();
+			sub2.sayName();
+			console.log(sub1.name);
+			
+			
+		</script>
+	</head>
+	<body>
+	</body>
+</html>
