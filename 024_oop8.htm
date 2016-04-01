@@ -1,0 +1,87 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
+<html>
+	<head>
+		<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+		<title>Untitled Document</title>
+		<script type =text/javascript charset=utf-8>
+			
+			//原型继承：既继承模板又继承原型 （继承时传参）
+			//父类
+			/*
+			function Person(name,age){
+				this.name = name;
+				this.age = age;
+			}
+			
+			Person.prototype.id = '0041021';
+			//子类
+			function Boys(sex){
+				this.sex = sex;
+			}
+			
+			try{
+			Boys.prototype = new Person('z3',39);
+			var b = new Boys('男');
+			alert(b.name);
+			alert(b.age);
+			alert(b.id);
+			alert(b.sex);
+			}
+			catch(ex){
+				console.log(ex);
+			}
+			*/
+			
+			//类继承（借用构造函数模板继承）：只能继承模板 不能继承原型
+			/*
+			function Person(name,age){
+				this.name = name;
+				this.age = age;
+			}
+			Person.prototype.say = function(){alert(this.name);};
+			
+			function Boy(sex,name,age){
+				this.sex =sex;
+				Person.call(this,name,age);
+			}
+			
+			var b = new Boy('男','张三',20);
+			alert(b.name);
+			alert(b.age);
+			try{
+				b.say();		//b.say（）不是一个函数
+			}
+			catch(ex){
+				console.log(ex);
+			}			
+			*/
+			
+			//混合模式：既能实现模板和原型对象的继承 又能在实例化子类对象时传参
+			function Person(name,age){
+				this.name = name;
+				this.age = age;
+				
+			}
+			Person.prototype.sayName = function(){
+				alert(this.name);
+			}
+			
+			function Boy(name,age,sex){
+				this.sex = sex;
+				Person.call(this,name,age)
+			}	
+			Boy.prototype = new Person();
+			var b = new Boy('张三',20,'男');
+			alert(b.name);
+			alert(b.sex);
+			alert(b.age);
+			b.sayName();
+			
+			
+			
+			
+		</script>
+	</head>
+	<body>
+	</body>
+</html>
