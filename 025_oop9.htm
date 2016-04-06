@@ -1,0 +1,56 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
+<html>
+	<head>
+		<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+		<title>Untitled Document</title>
+		<script type=text/javascript charset=utf-8>
+			
+			//普通的混合继承 继承了2次父类的模板 1次父类的原型 效率低下
+			function extend(sub,sup){
+				var F = new Function();		//1 创建一个空函数
+				F.prototype = sup.prototype;		//2 实现空函数原型对象和超类原型对象的转换
+				sub.prototype = new F();		//3 原型继承
+				sub.prototype.constructor = sub;	//4 还原子类构造器
+				//保存父类的原型对象 一方面方便解耦 另一方面更方便获得父类的原型对象
+				sub.superClass = sup.prototype;		//还原子类构造器
+				if(sup.prototype.constructor == Object.prototype.constructor){
+					sup.prototype.constructor = sup;
+				}
+			}
+			
+			function Person(name,age){
+				this.name = name;
+				this.age  = age;
+			}
+			Person.prototype = {
+				//alert('ptototype is running!'),
+				constructor:Person,
+				sayName:function(){
+					alert('father class!');
+					alert('ptototype is running!');
+				},
+			}
+			
+			function Boy(name,age,sex){
+				Boy.superClass.constructor.call(this,name,age);
+				this.sex = sex;
+			}
+			extend(Boy,Person);
+			
+			var b = new Boy('张三',25,'男');
+			alert(b.name);
+			alert(b.age);
+			b.sayName();
+			
+			
+			
+			
+			
+			
+			
+			
+		</script>
+	</head>
+	<body>
+	</body>
+</html>
