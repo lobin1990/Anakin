@@ -1,0 +1,41 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
+<html>
+	<head>
+		<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+		<title>Untitled Document</title>
+		<script type=text/javascript charset=utf-8>
+			
+			//javascript实现接口有3种方法：注解描述法 属性检测法 鸭式辨型法
+			//注解描述法
+			/***
+			 * function interface(){
+			 * 		add() = function();
+			 * 		remove() = function();
+			 * 		select() = function();
+			 * }
+			 */
+			//interfaceImp implents interface
+			function interfaceImp(){
+				
+			}
+			interfaceImp.prototype.add = function(){
+				//do something
+				alert('add');
+			}
+			interfaceImp.prototype.remove = function(){
+				//do something
+			}
+			interfaceImp.prototype.select = function(){
+				//do something
+			}
+						
+			
+			var intImp = new interfaceImp();
+			intImp.add();
+			
+			
+		</script>
+	</head>
+	<body>
+	</body>
+</html>
