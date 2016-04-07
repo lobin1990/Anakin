@@ -1,0 +1,73 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
+<html>
+	<head>
+		<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+		<title>Untitled Document</title>
+		<script type=text/javascript charset=utf-8>
+			
+			//属性检测法
+			/**
+			 * interface Composite(){
+			 * 		function add(obj);
+			 * 		function remove(obj);
+			 * 		function update(obj);
+			 * }
+			 * 
+			 * interface FormItem(){
+			 * 		function select(obj);
+			 * }
+			 * 
+			 */
+			
+			//CompositeImp implents Composite FormItem
+			function CompositeImp(){
+				this.implementsinterfaces = ['Composite','FormItem'];
+			}
+			CompositeImp.prototype.add = function(){
+				alert('add...');
+			}
+			CompositeImp.prototype.remove = function(){
+				alert('remove...');
+			}
+			CompositeImp.prototype.update = function(){
+				alert('update...');
+			}
+			CompositeImp.prototype.select = function(){
+				alert('select...');
+			}
+			
+			function checkCompositeImp(instance){
+				if(!IsImplents(instance,'Composite','FormItem')){
+					throw new Error('Object does not implements a required interface!');
+				}
+			}
+			
+			function IsImplents(object){
+				for(var i = 1;i < arguments.length;i++){
+					var argumentsName = arguments[i];
+					var interfaceFound = false;
+					for(var j = 0;j < object.implementsinterfaces.length;j++){
+						if(argumentsName == object.implementsinterfaces[j]){
+							interfaceFound = true;
+							break;
+						}
+						
+					}
+					if(!interfaceFound){
+						return false;
+					}
+				}
+				return true;
+			}
+			
+			var c1 = new CompositeImp();
+			checkCompositeImp(c1);
+			c1.add();
+			
+			
+			
+		</script>
+	</head>
+	<body>
+	</body>
+</html>
