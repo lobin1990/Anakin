@@ -1,0 +1,60 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
+<html>
+	<head>
+		<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+		<title>Untitled Document</title>
+		<script type=text/javascript charset=utf-8>
+			
+			//单体模式
+			//简单单体
+			/*
+			var Singleton = {
+				attr1 :true,
+				attr2 :10,
+				method1 :function(){
+					alert('method1');
+				},
+				method2 :function(){
+					alert('method2');
+				}
+			}
+			
+			Singleton.method1();
+			*/
+			//简单单体用于创建命名空间
+			
+			//闭包单体
+			var LJB = {};
+			LJB.Singleton = (function(){
+				var a1 = true;
+				var a2 = 10;
+				method1 = function(){
+					alert('method1');
+				}
+				method2 = function(){
+					alert('method2');
+				}
+				return {
+					attr1 :a1,
+					attr2 :a2,
+					med1 :function(){
+						return method1();
+					},
+					med2 :function(){
+						return method2();
+					}
+				}
+			})();
+			alert(LJB.Singleton.attr1);
+			LJB.Singleton.med1();
+			
+			
+			
+			
+			
+			
+		</script>
+	</head>
+	<body>
+	</body>
+</html>
