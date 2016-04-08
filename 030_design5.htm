@@ -1,0 +1,91 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
+<html>
+	<head>
+		<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+		<title>Untitled Document</title>
+		<script type=text/javascript charset=utf-8>
+			
+			//惰性单体(和闭包单体相似 但是可以控制单体需要的部分进行初始化)
+			/*
+			var Ext = {};		//创建命名空间
+			Ext.Base = (function(){
+				var uniqInstance;
+				var update;
+				function init(){
+					var a = true;
+					var b = 10;
+					method1 = function(){
+						alert('method1');
+					}	
+					method2 = function(){
+						alert('method2');
+					}
+					return {
+						attr1:a,
+						attr2:b,
+						med1:function(){
+							return method1();
+						},
+						med2:function(){
+							return method2();
+						}
+					}
+				}
+				
+				function updatedata(){
+					up = function(){
+						alert('update data!');
+					}
+					
+					return {
+						method3:function(){
+							return up();
+						}
+					}
+				}
+				return {
+					getInstance:function(){
+						//用一个变量控制需要初始化的方法（关联到一起）
+						if(!uniqInstance){
+							uniqInstance = init();
+						}
+						return uniqInstance;
+					},
+					
+					getUpdate:function(){
+						if(!update){
+							update = updatedata();
+						}
+						return update;
+					}
+					
+				}
+				
+			})()
+			
+			Ext.Base.getInstance().med1();
+			Ext.Base.getUpdate().method3();
+			*/
+			
+			//分支单体
+			var Ext = {};
+			Ext.More = (function(){
+				var deff = true;
+				var objA = {
+					attr:'IE',
+				}
+				var objB = {
+					attr:'FF',
+				}
+				return (deff) ? objA : objB
+			})()
+			
+			alert(Ext.More.attr);
+			
+			
+			
+		</script>
+	</head>
+	<body>
+	</body>
+</html>
